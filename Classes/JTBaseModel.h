@@ -39,6 +39,7 @@
 
 -(id)initWithDelegate:(id<JTModelDelegate>)delegate;
 -(void)load;
+-(void)loadUpdates;
 -(void)loadMore;
 -(void)refresh;
 -(void)unload;

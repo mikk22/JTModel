@@ -123,6 +123,15 @@
 
 
 
+
+-(void)loadUpdates
+{
+    //the same as load
+    [self load];
+}
+
+
+
 -(void)loadMore
 {
     self.isLoadingMore=YES;
