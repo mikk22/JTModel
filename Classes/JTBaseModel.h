@@ -48,7 +48,8 @@
 -(void)didLoadMore;
 -(void)changed;
 -(void)changedWithItems:(NSArray*)newItems;
--(void)error;
+//-(void)error __attribute__((deprecated));
+-(void)error:(NSError*)aError;
 -(void)noMoreItems;
 
 //-(void)addDelegate:(id<JTModelDelegate>)delegate;
@@ -68,5 +69,6 @@
     -(void)modelNoMoreItems:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model withItems:(NSArray*)newItems;
-    -(void)modelError:(JTBaseModel*)model; 
+//    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
+    -(void)model:(JTBaseModel*)model error:(NSError*)aError;
 @end

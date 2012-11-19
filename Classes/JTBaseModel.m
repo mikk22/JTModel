@@ -194,11 +194,19 @@
 }
 
 
-
+/*
 -(void)error
 {
     if ([self.delegate respondsToSelector:@selector(modelError:)])
         [self.delegate modelError:self];
+}
+*/
+
+
+-(void)error:(NSError*)aError
+{
+    if ([self.delegate respondsToSelector:@selector(model:error:)])
+        [self.delegate model:self error:aError];
 }
 
 

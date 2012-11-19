@@ -17,6 +17,6 @@
 
 -(NSArray*)objectsForKeyIndex:(NSInteger)sectionIndex;
 -(id)objectAtIndex:(NSInteger)objectIndex forKeyIndex:(NSInteger)sectionIndex;
-
+-(void)setObject:(id)anObject forKey:(id<NSCopying>)aKey;
 
 @end

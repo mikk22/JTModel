@@ -41,5 +41,16 @@
     return nil;
 }
 
+-(void)setObject:(id)anObject forKey:(id<NSCopying>)aKey
+{
+    if (anObject && aKey)
+    {
+        NSMutableDictionary *mutableDataObjects=[NSMutableDictionary dictionaryWithDictionary:_dataDictionary];
+        [mutableDataObjects setObject:anObject forKey:aKey];
+        _dataDictionary=[NSDictionary dictionaryWithDictionary:mutableDataObjects];
+    }
+}
+
+
 
 @end
