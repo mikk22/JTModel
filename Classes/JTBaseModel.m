@@ -141,13 +141,6 @@
 
 
 
--(void)refresh
-{
-    [self changedWithItems:[NSArray array]];
-}
-
-
-
 -(void)unload
 {
     self.isLoaded=NO;
@@ -161,11 +154,11 @@
     self.isLoading=NO;
     self.isLoaded=YES;
     self.noMoreObjects=NO;
-    
+
+    [self changed];
+
     if ([self.delegate respondsToSelector:@selector(modelDidLoad:)])
         [self.delegate modelDidLoad:self];
-    if ([self.delegate respondsToSelector:@selector(modelChanged:)])
-        [self.delegate modelChanged:self];
 }
 
 
@@ -173,15 +166,18 @@
 
 
 
--(void)didLoadMore
+-(void)didLoadMoreWithItems:(NSArray*)newItems
 {
     self.isLoadingMore=NO;
     self.isLoaded=YES;
+
+    if (!newItems.count)
+        self.noMoreObjects=YES;
     
-    if ([self.delegate respondsToSelector:@selector(modelDidLoadMore:)])
-        [self.delegate modelDidLoadMore:self];
-    if ([self.delegate respondsToSelector:@selector(modelChanged:)])
-        [self.delegate modelChanged:self];
+    [self changed];
+    
+    if ([self.delegate respondsToSelector:@selector(model:didLoadMoreWithItems:)])
+        [self.delegate model:self didLoadMoreWithItems:newItems];
 }
 
 
@@ -222,10 +218,14 @@
 
 
 
--(void)changedWithItems:(NSArray*)newItems
+-(void)updatedWithItems:(NSArray*)newItems
 {
-    if ([self.delegate respondsToSelector:@selector(modelChanged:withItems:)])
-        [self.delegate modelChanged:self withItems:newItems];
+    self.hasChanged=YES;
+
+    if ([self.delegate respondsToSelector:@selector(modelUpdated:withItems:)])
+        [self.delegate modelUpdated:self withItems:newItems];
+    if ([self.delegate respondsToSelector:@selector(modelChanged:)])
+        [self.delegate modelChanged:self];
 }
 
 

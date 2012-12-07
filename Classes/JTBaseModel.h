@@ -41,16 +41,15 @@
 -(void)load;
 -(void)loadUpdates;
 -(void)loadMore;
--(void)refresh;
 -(void)unload;
 
 -(void)didLoad;
--(void)didLoadMore;
+-(void)didLoadMoreWithItems:(NSArray*)newItems;;
+-(void)noMoreItems;
 -(void)changed;
--(void)changedWithItems:(NSArray*)newItems;
+-(void)updatedWithItems:(NSArray*)newItems;
 //-(void)error __attribute__((deprecated));
 -(void)error:(NSError*)aError;
--(void)noMoreItems;
 
 //-(void)addDelegate:(id<JTModelDelegate>)delegate;
 //-(void)removeDelegate:(id<JTModelDelegate>)delegate;
@@ -65,10 +64,10 @@
     -(void)modelIsLoadingMore:(JTBaseModel*)model;
     -(void)modelWillLoad:(JTBaseModel*)model;
     -(void)modelDidLoad:(JTBaseModel*)model; 
-    -(void)modelDidLoadMore:(JTBaseModel*)model;
+    -(void)model:(JTBaseModel*)model didLoadMoreWithItems:(NSArray*)newItems;
     -(void)modelNoMoreItems:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model;
-    -(void)modelChanged:(JTBaseModel*)model withItems:(NSArray*)newItems;
+    -(void)modelUpdated:(JTBaseModel*)model withItems:(NSArray*)newItems;
 //    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
     -(void)model:(JTBaseModel*)model error:(NSError*)aError;
 @end
