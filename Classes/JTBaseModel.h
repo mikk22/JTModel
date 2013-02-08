@@ -50,13 +50,13 @@
 -(void)updatedWithItems:(NSArray*)newItems;
 //-(void)error __attribute__((deprecated));
 -(void)error:(NSError*)aError;
+-(void)progress:(CGFloat)progressValue forItem:(NSObject*)item;
 
 //-(void)addDelegate:(id<JTModelDelegate>)delegate;
 //-(void)removeDelegate:(id<JTModelDelegate>)delegate;
 
 
 @end
-
 
 @protocol JTModelDelegate <NSObject>
 @optional
@@ -70,4 +70,12 @@
     -(void)modelUpdated:(JTBaseModel*)model withItems:(NSArray*)newItems;
 //    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
     -(void)model:(JTBaseModel*)model error:(NSError*)aError;
+    -(void)model:(JTBaseModel*)model progress:(CGFloat)progressValue forItem:(NSObject*)item;
+@end
+
+
+//protocol needs to inform other parent controllers if object in child controller updates
+@protocol JTModelObjectUpdateDelegate <NSObject>
+@optional
+-(void)objectUpdated:(id)anObject;
 @end

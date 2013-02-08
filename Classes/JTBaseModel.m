@@ -154,8 +154,9 @@
     self.isLoading=NO;
     self.isLoaded=YES;
     self.noMoreObjects=NO;
+    self.hasChanged=NO;
 
-    [self changed];
+//    [self changed];
 
     if ([self.delegate respondsToSelector:@selector(modelDidLoad:)])
         [self.delegate modelDidLoad:self];
@@ -174,7 +175,7 @@
     if (!newItems.count)
         self.noMoreObjects=YES;
     
-    [self changed];
+//    [self changed];
     
     if ([self.delegate respondsToSelector:@selector(model:didLoadMoreWithItems:)])
         [self.delegate model:self didLoadMoreWithItems:newItems];
@@ -204,6 +205,18 @@
     if ([self.delegate respondsToSelector:@selector(model:error:)])
         [self.delegate model:self error:aError];
 }
+
+
+
+
+-(void)progress:(CGFloat)progressValue forItem:(NSObject*)item
+{
+    if ([self.delegate respondsToSelector:@selector(model:progress:forItem:)])
+        [self.delegate model:self progress:progressValue forItem:item];
+}
+
+
+
 
 
 
