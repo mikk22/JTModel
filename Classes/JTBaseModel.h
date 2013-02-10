@@ -47,7 +47,7 @@
 -(void)didLoadMoreWithItems:(NSArray*)newItems;;
 -(void)noMoreItems;
 -(void)changed;
--(void)updatedWithItems:(NSArray*)newItems;
+-(void)updatedWithItems:(id)newItems;
 //-(void)error __attribute__((deprecated));
 -(void)error:(NSError*)aError;
 -(void)progress:(CGFloat)progressValue forItem:(NSObject*)item;
@@ -67,7 +67,7 @@
     -(void)model:(JTBaseModel*)model didLoadMoreWithItems:(NSArray*)newItems;
     -(void)modelNoMoreItems:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model;
-    -(void)modelUpdated:(JTBaseModel*)model withItems:(NSArray*)newItems;
+    -(void)modelUpdated:(JTBaseModel*)model withItems:(id)newItems;
 //    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
     -(void)model:(JTBaseModel*)model error:(NSError*)aError;
     -(void)model:(JTBaseModel*)model progress:(CGFloat)progressValue forItem:(NSObject*)item;

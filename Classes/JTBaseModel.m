@@ -231,7 +231,7 @@
 
 
 
--(void)updatedWithItems:(NSArray*)newItems
+-(void)updatedWithItems:(id)newItems
 {
     self.hasChanged=YES;
 
