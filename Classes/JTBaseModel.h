@@ -64,7 +64,7 @@
     -(void)modelIsLoadingMore:(JTBaseModel*)model;
     -(void)modelWillLoad:(JTBaseModel*)model;
     -(void)modelDidLoad:(JTBaseModel*)model; 
-    -(void)model:(JTBaseModel*)model didLoadMoreWithItems:(NSArray*)newItems;
+    -(void)model:(JTBaseModel*)model didLoadMoreWithItems:(id)newItems;
     -(void)modelNoMoreItems:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model;
     -(void)modelUpdated:(JTBaseModel*)model withItems:(id)newItems;
@@ -78,4 +78,5 @@
 @protocol JTModelObjectUpdateDelegate <NSObject>
 @optional
 -(void)objectUpdated:(id)anObject;
+-(void)objectInserted:(id)anObject;
 @end
