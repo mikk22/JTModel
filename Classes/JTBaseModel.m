@@ -113,6 +113,9 @@
 
 -(void)load
 {
+    if (self.isLoading)
+        return;
+    
     self.isLoading=YES;    
     if ([self.delegate respondsToSelector:@selector(modelWillLoad:)])
         [self.delegate modelWillLoad:self];
