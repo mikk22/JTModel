@@ -137,6 +137,9 @@
 
 -(void)loadMore
 {
+    if (self.isLoadingMore)
+        return;
+
     self.isLoadingMore=YES;
     if ([self.delegate respondsToSelector:@selector(modelIsLoadingMore:)])
         [self.delegate modelIsLoadingMore:self];
