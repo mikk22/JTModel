@@ -119,9 +119,6 @@
     self.isLoading=YES;    
     if ([self.delegate respondsToSelector:@selector(modelWillLoad:)])
         [self.delegate modelWillLoad:self];
-    
-    if ([self.delegate respondsToSelector:@selector(modelIsLoading:)])
-        [self.delegate modelIsLoading:self];
 }
 
 
@@ -159,7 +156,6 @@
 {
     self.isLoading=NO;
     self.isLoaded=YES;
-    self.noMoreObjects=NO;
     self.hasChanged=NO;
 
 //    [self changed];
@@ -225,7 +221,7 @@
 
 
 
-
+/*
 -(void)noMoreItems
 {
     self.noMoreObjects=YES;
@@ -233,7 +229,7 @@
     if ([self.delegate respondsToSelector:@selector(modelNoMoreItems:)])
         [self.delegate modelNoMoreItems:self];
 }
-
+*/
 
 
 

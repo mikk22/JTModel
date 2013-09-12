@@ -60,13 +60,14 @@
 
 @protocol JTModelDelegate <NSObject>
 @optional
-    -(void)modelIsLoading:(JTBaseModel*)model; 
-    -(void)modelIsLoadingMore:(JTBaseModel*)model;
+//    -(void)modelIsLoading:(JTBaseModel*)model;
     -(void)modelWillLoad:(JTBaseModel*)model;
     -(void)modelDidLoad:(JTBaseModel*)model; 
+    -(void)modelIsLoadingMore:(JTBaseModel*)model;
     -(void)model:(JTBaseModel*)model didLoadMoreWithItems:(id)newItems;
-    -(void)modelNoMoreItems:(JTBaseModel*)model;
+//    -(void)modelNoMoreItems:(JTBaseModel*)model;
     -(void)modelChanged:(JTBaseModel*)model;
+    -(void)modelWillUpdateItems:(JTBaseModel*)model;
     -(void)modelUpdated:(JTBaseModel*)model withItems:(id)newItems;
 //    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
     -(void)model:(JTBaseModel*)model error:(NSError*)aError;
