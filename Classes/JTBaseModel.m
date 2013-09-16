@@ -17,6 +17,7 @@
 
 @synthesize isLoaded=_isLoaded;
 @synthesize isLoading=_isLoading;
+@synthesize isLoadingUpdates=_isLoadingUpdates;
 @synthesize isLoadingMore=_isLoadingMore;
 @synthesize noMoreObjects=_noMoreObjects;
 @synthesize isOutdated=_isOutdated;
@@ -126,8 +127,12 @@
 
 -(void)loadUpdates
 {
-    //the same as load
-    [self load];
+    if (self.isLoadingUpdates)
+        return;
+    
+    self.isLoadingUpdates=YES;
+    if ([self.delegate respondsToSelector:@selector(modelWillUpdateItems:)])
+        [self.delegate modelWillUpdateItems:self];
 }
 
 
@@ -193,14 +198,6 @@
 }
 
 
-/*
--(void)error
-{
-    if ([self.delegate respondsToSelector:@selector(modelError:)])
-        [self.delegate modelError:self];
-}
-*/
-
 
 -(void)error:(NSError*)aError
 {
@@ -239,8 +236,8 @@
 
     if ([self.delegate respondsToSelector:@selector(modelUpdated:withItems:)])
         [self.delegate modelUpdated:self withItems:newItems];
-    if ([self.delegate respondsToSelector:@selector(modelChanged:)])
-        [self.delegate modelChanged:self];
+    
+    [self changed];
 }
 
 

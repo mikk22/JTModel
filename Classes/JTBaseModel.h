@@ -14,6 +14,7 @@
 {
     BOOL                        _isLoaded;
     BOOL                        _isLoading;
+    BOOL                        _isLoadingUpdates;
     BOOL                        _isLoadingMore;
     BOOL                        _noMoreObjects;
     BOOL                        _isOutdated;
@@ -25,6 +26,7 @@
 
 @property (nonatomic)               BOOL                        isLoaded;
 @property (nonatomic)               BOOL                        isLoading;
+@property (nonatomic)               BOOL                        isLoadingUpdates;
 @property (nonatomic)               BOOL                        isLoadingMore;
 @property (nonatomic)               BOOL                        noMoreObjects;
 @property (nonatomic)               BOOL                        isOutdated;
@@ -45,7 +47,6 @@
 
 -(void)didLoad;
 -(void)didLoadMoreWithItems:(NSArray*)newItems;;
--(void)noMoreItems;
 -(void)changed;
 -(void)updatedWithItems:(id)newItems;
 //-(void)error __attribute__((deprecated));
