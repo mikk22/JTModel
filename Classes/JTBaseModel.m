@@ -201,6 +201,9 @@
 
 -(void)error:(NSError*)aError
 {
+    self.isLoading=NO;
+    self.isLoadingMore=NO;
+    self.isLoadingUpdates=NO;
     if ([self.delegate respondsToSelector:@selector(model:error:)])
         [self.delegate model:self error:aError];
 }
