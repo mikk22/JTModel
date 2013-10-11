@@ -114,7 +114,7 @@
 
 -(void)load
 {
-    if (self.isLoading)
+    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
         return;
     
     self.isLoading=YES;    
@@ -127,7 +127,7 @@
 
 -(void)loadUpdates
 {
-    if (self.isLoadingUpdates)
+    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
         return;
     
     self.isLoadingUpdates=YES;
@@ -139,7 +139,7 @@
 
 -(void)loadMore
 {
-    if (self.isLoadingMore)
+    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
         return;
 
     self.isLoadingMore=YES;
