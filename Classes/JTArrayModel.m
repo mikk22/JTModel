@@ -1,12 +1,19 @@
 //
 //  JTModel.m
-//  Jeetrium
+//  
 //
-//  Created by Mihail Koltsov on 5/16/12.
-//  Copyright (c) 2012 Intelvision. All rights reserved.
+//  Created by mikk.22 on 5/16/12.
+//  Copyright (c) 2012 mikk.22. All rights reserved.
 //
 
 #import "JTArrayModel.h"
+
+@interface JTArrayModel()
+
+@property (nonatomic, strong)     NSArray     *dataObjects;
+
+@end
+
 
 @implementation JTArrayModel
 
@@ -49,7 +56,7 @@
 {
     _dataObjects=[self.dataObjects arrayByAddingObject:object];
     //[self changedAtIndexes:[NSIndexSet indexSetWithIndex:(_dataObjects.count-1)]];
-    [self changed];
+    [self didChange];
 }
 
 -(void)removeObjectAtIndex:(NSUInteger)index
@@ -59,7 +66,7 @@
         NSMutableArray *mutableDataObjects=[NSMutableArray arrayWithArray:self.dataObjects];
         [mutableDataObjects removeObjectAtIndex:index];
         _dataObjects=[NSArray arrayWithArray:mutableDataObjects];
-        [self changed];
+        [self didChange];
     }
 }
 
@@ -71,7 +78,7 @@
         NSMutableArray *mutableDataObjects=[NSMutableArray arrayWithArray:self.dataObjects];
         [mutableDataObjects removeObject:anObject];
         _dataObjects=[NSArray arrayWithArray:mutableDataObjects];
-        [self changed];
+        [self didChange];
     }
 }
 
@@ -82,7 +89,7 @@
         NSMutableArray *mutableDataObjects=[NSMutableArray arrayWithArray:self.dataObjects];
         [mutableDataObjects insertObject:anObject atIndex:index];
         _dataObjects=[NSArray arrayWithArray:mutableDataObjects];
-        [self changed];
+        [self didChange];
     }
 }
 
@@ -94,7 +101,7 @@
         NSMutableArray *mutableDataObjects=[NSMutableArray arrayWithArray:self.dataObjects];
         [mutableDataObjects replaceObjectAtIndex:index withObject:anObject];
         _dataObjects=[NSArray arrayWithArray:mutableDataObjects];
-        [self changed];
+        [self didChange];
     }
 }
 
@@ -110,7 +117,7 @@
             NSMutableArray *mutableDataObjects=[NSMutableArray arrayWithArray:self.dataObjects];
             [mutableDataObjects replaceObjectAtIndex:oldObjIndex withObject:newObject];
             _dataObjects=[NSArray arrayWithArray:mutableDataObjects];
-            [self changed];
+            [self didChange];
         } else
         {
             //DLog(@"OBJECT %@ NOT FOUND",anObject);

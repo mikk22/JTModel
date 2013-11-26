@@ -1,19 +1,16 @@
 //
 //  JTArrayModel.h
-//  Jeetrium
 //
-//  Created by Mihail Koltsov on 5/16/12.
-//  Copyright (c) 2012 Intelvision. All rights reserved.
+//
+//  Created by mikk.22 on 5/16/12.
+//  Copyright (c) 2012 mikk.22. All rights reserved.
 //
 
-#import "JTBaseModel.h"
+#import "JTModel.h"
 
-@interface JTArrayModel : JTBaseModel
-{
-    NSArray                     *_dataObjects;
-}
+@interface JTArrayModel : JTModel
 
-@property (nonatomic, readonly)     NSArray                     *dataObjects;
+@property (nonatomic, readonly)     NSArray     *dataObjects;
 
 -(void)addObject:(id)object;
 -(void)removeObjectAtIndex:(NSUInteger)index;

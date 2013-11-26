@@ -1,9 +1,9 @@
 //
 //  JTDictionaryModel.h
-//  Devisa
+//  
 //
-//  Created by user on 29.08.12.
-//  Copyright (c) 2012 Intelvision. All rights reserved.
+//  Created by mikk.22 on 29.08.12.
+//  Copyright (c) 2012 mikk.22. All rights reserved.
 //
 
 #import "JTArrayModel.h"
