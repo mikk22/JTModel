@@ -32,6 +32,9 @@
 
 @property (nonatomic, weak)         __weak id<JTModelDelegate>  delegate;
 
+//key used
+@property (nonatomic, readonly)     NSString                    *modelLastLoadKey;
+
 
 -(id)initWithDelegate:(id<JTModelDelegate>)delegate;
 -(void)unload;

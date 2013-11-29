@@ -26,6 +26,17 @@
 }
 
 
+#pragma mark - Properties -
+
+
+-(NSString*)modelLastLoadKey
+{
+    //redefine this string to set unique key for each object
+    return [NSString stringWithFormat:@"%@.lastLoadKey",NSStringFromClass(self.class)];
+}
+
+
+
 #pragma mark - Messages -
 
 
