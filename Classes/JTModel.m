@@ -211,4 +211,48 @@
 
 
 
+#pragma mark - Operations -
+
+
+-(NSOperationQueue*)operationQueue
+{
+    if (!_operationQueue)
+    //if not
+        return NSOperationQueue.currentQueue;
+    
+    return _operationQueue;
+}
+
+
+-(NSMutableArray*)requestOperations
+{
+    if (!_requestOperations)
+        _requestOperations=NSMutableArray.array;
+    
+    return _requestOperations;
+}
+
+
+-(void)addRequestOperation:(NSOperation*)requestOperation;
+{
+    [self.requestOperations addObject:requestOperation];
+    [self.operationQueue addOperation:requestOperation];
+}
+
+
+-(void)stopRequestOperations
+{
+    [self.requestOperations makeObjectsPerformSelector:@selector(cancel)];
+    [self.requestOperations removeAllObjects];
+
+    self.isLoading=NO;
+    self.isLoadingMore=NO;
+    self.isLoadingUpdates=NO;
+
+    if ([self.delegate respondsToSelector:@selector(modelOperationsCanceled:)])
+        [self.delegate modelOperationsCanceled:self];
+}
+
+
+
 @end

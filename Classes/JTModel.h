@@ -35,6 +35,10 @@
 //key used
 @property (nonatomic, readonly)     NSString                    *modelLastLoadKey;
 
+//operations
+@property (nonatomic, strong)   NSMutableArray                  *requestOperations;
+@property (nonatomic, strong)   NSOperationQueue                *operationQueue;
+
 
 -(id)initWithDelegate:(id<JTModelDelegate>)delegate;
 -(void)unload;
@@ -56,5 +60,11 @@
 //-(void)error __attribute__((deprecated));
 -(void)error:(NSError*)aError;
 -(void)progress:(CGFloat)progressValue forItem:(NSObject*)item;
+
+//operations
+
+-(void)addRequestOperation:(NSOperation*)requestOperation;
+-(void)stopRequestOperations;
+
 
 @end

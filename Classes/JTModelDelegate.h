@@ -34,4 +34,6 @@ static NSString* const JTModelUpdateAction=     @"JTModel.update";
 -(void)model:(JTModel*)model error:(NSError*)aError;
 -(void)model:(JTModel*)model progress:(CGFloat)progressValue forObject:(id)object;
 //    -(void)modelError:(JTBaseModel*)model __attribute__((deprecated));
+
+-(void)modelOperationsCanceled:(JTModel*)model;
 @end
