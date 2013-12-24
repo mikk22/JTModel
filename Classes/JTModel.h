@@ -47,6 +47,10 @@
 -(void)loadUpdates;
 -(void)loadMore;
 
+-(BOOL)willLoad;
+-(BOOL)willLoadUpdates;
+-(BOOL)willLoadMore;
+
 -(void)didLoad;
 -(void)didLoadMoreWithObjects:(id)newItems;
 -(void)didChange;

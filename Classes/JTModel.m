@@ -19,7 +19,7 @@
     self=[self init];
     if (self)
     {
-        self.delegate=delegate;
+        _delegate=delegate;
     }
     
     return self;
@@ -43,12 +43,8 @@
 
 -(void)load
 {
-    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
-        return;
-    
-    self.isLoading=YES;    
-    if ([self.delegate respondsToSelector:@selector(modelWillLoad:)])
-        [self.delegate modelWillLoad:self];
+    //now implements nothing
+    //declared only for subclassing
 }
 
 
@@ -56,24 +52,58 @@
 
 -(void)loadUpdates
 {
-    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
-        return;
-    
-    self.isLoadingUpdates=YES;
-    if ([self.delegate respondsToSelector:@selector(modelWillUpdate:)])
-        [self.delegate modelWillUpdate:self];
+    //now implements nothing
+    //declared only for subclassing
 }
 
 
 
 -(void)loadMore
 {
+    //now implements nothing
+    //declared only for subclassing
+}
+
+
+
+-(BOOL)willLoad
+{
     if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
-        return;
+        return NO;
+    
+    self.isLoading=YES;    
+    if ([self.delegate respondsToSelector:@selector(modelWillLoad:)])
+        [self.delegate modelWillLoad:self];
+    
+    return YES;
+}
+
+
+
+-(BOOL)willLoadUpdates
+{
+    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
+        return NO;
+    
+    self.isLoadingUpdates=YES;
+    if ([self.delegate respondsToSelector:@selector(modelWillUpdate:)])
+        [self.delegate modelWillUpdate:self];
+    
+    return YES;
+}
+
+
+
+-(BOOL)willLoadMore
+{
+    if (self.isLoadingMore || self.isLoadingUpdates || self.isLoading)
+        return NO;
 
     self.isLoadingMore=YES;
     if ([self.delegate respondsToSelector:@selector(modelWillLoadMore:)])
         [self.delegate modelWillLoadMore:self];
+    
+    return YES;
 }
 
 
@@ -137,6 +167,10 @@
     self.hasChanged=NO;
 
 //    [self changed];
+
+    //writing lastLoad time
+    [NSUserDefaults.standardUserDefaults setObject:NSDate.date forKey:self.modelLastLoadKey];
+    [NSUserDefaults.standardUserDefaults synchronize];
 
     if ([self.delegate respondsToSelector:@selector(modelDidLoad:)])
         [self.delegate modelDidLoad:self];
@@ -235,6 +269,15 @@
 
 -(void)addRequestOperation:(NSOperation*)requestOperation;
 {
+    if (!requestOperation)
+        return;
+    
+    for (NSOperation *operation in self.requestOperations)
+    {
+        if (operation.isCancelled || operation.isFinished)
+            [self.requestOperations removeObject:operation];
+    }
+    
     [self.requestOperations addObject:requestOperation];
     [self.operationQueue addOperation:requestOperation];
 }
@@ -242,6 +285,7 @@
 
 -(void)stopRequestOperations
 {
+    [self.requestOperations makeObjectsPerformSelector:@selector(setCompletionBlock:) withObject:nil];
     [self.requestOperations makeObjectsPerformSelector:@selector(cancel)];
     [self.requestOperations removeAllObjects];
 
