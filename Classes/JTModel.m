@@ -271,13 +271,7 @@
 {
     if (!requestOperation)
         return;
-    
-    for (NSOperation *operation in self.requestOperations)
-    {
-        if (operation.isCancelled || operation.isFinished)
-            [self.requestOperations removeObject:operation];
-    }
-    
+
     [self.requestOperations addObject:requestOperation];
     [self.operationQueue addOperation:requestOperation];
 }
