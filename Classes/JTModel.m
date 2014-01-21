@@ -14,9 +14,14 @@
 
 @implementation JTModel
 
+-(id)init
+{
+    return [self initWithDelegate:nil];
+}
+
 -(id)initWithDelegate:(id<JTModelDelegate>)delegate
 {
-    self=[self init];
+    self=[super init];
     if (self)
     {
         _delegate=delegate;
